@@ -174,3 +174,32 @@ Tests cover API basics and validation rules. They do not require a live model fo
 ## License
 
 This project scaffold is provided under the MIT License. The chosen model has its own license; review that separately.
+
+## 8. Run the React frontend
+
+The `frontend/` directory contains the SoloOps dashboard connected to this API. It supports summary metrics, multi-file receipt upload, expense search/filter, edit, approve, delete, and CSV export.
+
+Requirements: Node.js 18.18+ (Node 20 LTS recommended). In a second terminal, from the project root:
+
+```bash
+cd frontend
+cp .env.example .env
+npm install
+npm run dev
+```
+
+Open <http://127.0.0.1:5173>. Keep the backend running at <http://127.0.0.1:8000> in another terminal. The backend's default `CORS_ORIGINS` already allows `http://localhost:5173` and `http://127.0.0.1:5173`. If you change the frontend origin or API URL, update `frontend/.env` and `backend/.env` accordingly, then restart the relevant servers.
+
+Build the frontend for a production bundle with `npm run build`; Vite writes it to `frontend/dist/`.
+
+## 9. Frontend functionality and API mapping
+
+- Dashboard and table: `GET /expenses` and `GET /health`
+- Receipt upload: `POST /documents` with multipart field `files` (PDF and image formats supported by the backend)
+- Edit: `PATCH /expenses/{id}`
+- Approve: `POST /expenses/{id}/approve`
+- Delete: `DELETE /expenses/{id}`
+- Export: `GET /export.csv` (approved records only)
+
+The frontend uses the backend as the source of truth. An expense is not considered approved until the API confirms it.
+
