@@ -71,10 +71,6 @@ def extract_expense(text: str) -> tuple[ExpenseExtracted, str]:
         return _demo_extract(text), "demo-fallback"
     try:
         client = Client(host=OLLAMA_HOST, timeout=120)
-        print(json.dumps(
-            ExpenseExtracted.model_json_schema(),
-            indent=2
-        ))
         schema = ExpenseExtracted.model_json_schema()
         user_prompt = (
             "Extract the invoice fields from the document below.\n\n"
@@ -94,7 +90,6 @@ def extract_expense(text: str) -> tuple[ExpenseExtracted, str]:
             options={"temperature": 0, "num_predict": 300},
         )
         content = response.message.content
-        print(content)
         parsed = ExpenseExtracted.model_validate_json(content)
         return parsed, OLLAMA_MODEL
     except ValidationError as exc:

@@ -40,7 +40,6 @@ def process_upload(db: Session, filename: str, contents: bytes) -> ExpenseRecord
         text = extract_text(stored_path)
         record.raw_text = text
         extracted, model_used = extract_expense(text)
-        print(extracted)
         # Check against other records, excluding the current record.
         existing_records = db.query(ExpenseRecord).filter(ExpenseRecord.id != record.id).all()
         reasons = validate_expense(extracted, text, existing_records)
