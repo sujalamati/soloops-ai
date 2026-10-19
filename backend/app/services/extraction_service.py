@@ -87,7 +87,7 @@ def extract_expense(text: str) -> tuple[ExpenseExtracted, str]:
             model=OLLAMA_MODEL,
             messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user_prompt}],
             format=schema,
-            options={"temperature": 0, "num_predict": 300},
+            options={"temperature": 0},
         )
         content = response.message.content
         parsed = ExpenseExtracted.model_validate_json(content)
