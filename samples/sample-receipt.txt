@@ -1,8 +1,0 @@
-DEMO STATIONERY STORE
-Invoice: DEMO-001
-Date: 2026-10-15
-Currency: INR
-Subtotal: 100.00
-Tax: 18.00
-Total: INR 118.00
-Thank you!
