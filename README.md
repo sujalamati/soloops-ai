@@ -30,11 +30,11 @@ sudo apt update
 sudo apt install -y tesseract-ocr
 ```
 
-Install Ollama using the instructions at https://ollama.com/download. Start the Ollama service, then pull a small model. The default configured model is `qwen2.5:3b`:
+Install Ollama using the instructions at https://ollama.com/download. Start the Ollama service, then pull a small model. The default configured model is `gemma4:e4b`:
 
 ```bash
-ollama pull qwen2.5:3b
-ollama run qwen2.5:3b
+ollama pull gemma4:e4b
+ollama run gemma4:e4b
 ```
 
 Type a quick prompt, then exit the interactive session. Keep Ollama running in the background. If this model is too large for your hardware, choose a smaller compatible model and update `OLLAMA_MODEL` in `.env`. Check the model's license and hardware requirements before distributing it.
